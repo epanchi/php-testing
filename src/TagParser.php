@@ -1,17 +1,23 @@
 <?php
+
 namespace App;
 
 class TagParser
 {
     protected $tags = [];
 
-    public function parse($string)
+    public function parse($tags): array
     {
-        $this->tags = array_map('trim', explode(',', $string));
-    }
+        // return [$tags];
+        //return explode(', ', $tags);
+        //return preg_split('/[,|] ?/', $tags);
+        $tags = preg_split('/[,|] ?/', $tags);
 
-    public function getTags()
-    {
-        return $this->tags;
+        //    return array_map(function ($tag) {
+        //        return trim($tag);
+        //    }, $tags);
+
+        // Short version
+        return array_map(fn($tag) => trim($tag), $tags);
     }
 }
